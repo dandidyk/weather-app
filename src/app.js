@@ -33,8 +33,6 @@ app.get('/weather', (req, res) => {
 
     const address = req.query.address
 
-    console.log(address)
-
     if ( !address ) {
         return res.send({
            error:'Error message'
@@ -48,16 +46,15 @@ app.get('/weather', (req, res) => {
             })
         }
 
-        forecast(data, (error , { temperature, precipProbability } = {}) => {
+        forecast(data, (error , forecast ) => {
             if (error) {
                 return res.send({
                     error
                 })
             }
+            
             res.send({
-                temperature: `It is currently ${temperature} deegrees.`,
-                precipProbability: `${precipProbability * 100}% chance of rain`,
-                location: address
+                forecast
             })
         })
     

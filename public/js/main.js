@@ -1,6 +1,3 @@
-console.log('Hi from js');
-
-
 const form = document.querySelector('form');
 const input = document.querySelector('input');
 const message1 = document.querySelector('#message-1');
@@ -16,7 +13,6 @@ form.addEventListener('submit', e => {
 
     fetch(`/weather/?address=${searchValue}`)
         .then(response => {
-            console.log(response)
             return response.json()
         }).then(data => {
             if (data.error) {
@@ -24,7 +20,7 @@ form.addEventListener('submit', e => {
                 return
             }
             message1.textContent = data.location
-            message2.textContent = `${data.temperature} ${data.precipProbability}`
+            message2.textContent = data.forecast
         });
 
 })
